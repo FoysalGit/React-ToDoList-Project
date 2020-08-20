@@ -4,17 +4,14 @@ import InputArea from "./InputArea";
 
 function App() {
 
-    const [newItem , setItem] = useState("");
+    
     const [listItems, setNewItem] = useState([]);
 
-    function handleChange(e) {
-        const value = e.target.value;
-        setItem(value);
-    }
+    
 
-    function handleClick() {
+    function handleClick(newItem) {
         setNewItem(prevItems => [...prevItems, newItem]);
-        setItem("");
+        
     } 
     
     function deleteItem(id) {
@@ -26,7 +23,7 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-        <InputArea value={newItem} onChanged={handleChange} onClicked={handleClick} />
+        <InputArea onClicked={handleClick} />
       <div>
         <ul>
           {listItems.map((oneItem, index) => <ToDoItem key={index} id={index} onChecked={deleteItem} item= {oneItem}/>)}
